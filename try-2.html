@@ -89,14 +89,19 @@ else{
 	ul {
 		list-style-type: none;
 	}
+
+  .container{
+    margin: 0 auto;
+    width:500px;
+  }
 </style>
 </head>
 <body>
 <br>
 <br>
 <br>
-
-<form action="#">
+<div class="container">
+<form action="#" >
 <a id="a0" onclick="newToDoList()" onmouseover="this.style.cursor='pointer'">   +     </a><input id="toDoItem" type="text" placeholder="enter item"  >
 <button onclick="createToDoList()" onmouseover="this.style.cursor='pointer'">Add</button>
 </form>
@@ -105,7 +110,7 @@ else{
 <div id="div1" >
 	
 </div>
-
+</div>
 </body>
 </html>
 
