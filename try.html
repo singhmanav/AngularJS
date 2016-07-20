@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+	var i=0;
+
+function createToDoList() {
+	var text=""
+	i++;
+	text = document.getElementById('toDoItem').value;
+	if (text) {
+				
+		var liElement=document.createElement("li");
+		liElement.id="li"+i;
+		document.getElementById( 'ul1' ).appendChild(liElement); 
+		var checkB = document.createElement( "input" );
+        checkB.type = "checkbox";
+        checkB.id = "id"+i;
+        checkB.value = text;
+        checkB.checked = false;
+        //var text = document.createTextNode(text);
+        document.getElementById( 'li'+i ).appendChild( checkB );
+        
+        var spann=document.createElement("span");
+        spann.id="sp"+i;
+        spann.innerHTML=text;
+        document.getElementById( liElement.id).appendChild( spann );
+        
+
+        document.getElementById('toDoItem').value="";
+        checkB.addEventListener("change",function() {
+   				if (checkB.checked==true) {
+   				var child=document.getElementById(liElement.id);
+   				
+   				document.getElementById( 'ul1' ).appendChild(child);
+        	    document.getElementById(spann.id).style.textDecoration='line-through';
+        		}
+        		else{
+        			var child=document.getElementById(liElement.id);
+        			document.getElementById('ul1').removeChild(document.getElementById(liElement.id));
+   				document.getElementById('ul1').insertBefore(child,document.getElementById('ul1').firstChild);
+   				
+        			
+        	    document.getElementById(spann.id).style.textDecoration='none';
+        	    }		
+        	
+			
+			});
+			}
+	else{
+			alert("enter item in text field");
+		   }
+	   
+}
+</script>
+<style type="text/css">
+	ul {
+		list-style-type: none;
+	}
+</style>
+</head>
+<body>
+<br>
+<br>
+<br>
+
+<form action="#">
+<a id="a1" onclick="newToDoList()" onmouseover="this.style.cursor='pointer'">   +     </a><input id="toDoItem" type="text" placeholder="enter item"  >
+<button onclick="createToDoList()" onmouseover="this.style.cursor='pointer'">Add</button>
+</form>
+
+<br>
+<div id="div1" >
+	<ul id="ul1">
+		
+	</ul>
+</div>
+
+</body>
+</html>
+
