@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+	var i=0;
+
+function createToDoList() {
+	var text=""
+	i++;
+	text = document.getElementById('toDoItem').value;
+
+  if(document.getElementById('div1').children.length > 0)
+  {
+	if (text) {
+				
+		var liElement=document.createElement("li");
+		liElement.id="li"+i;
+		document.getElementById( 'div1' ).lastElementChild.appendChild(liElement); 
+		var checkB = document.createElement( "input" );
+        checkB.type = "checkbox";
+        checkB.id = "id"+i;
+        checkB.value = text;
+        checkB.checked = false;
+        //var text = document.createTextNode(text);
+        document.getElementById( 'li'+i ).appendChild( checkB );
+        
+        var spann=document.createElement("span");
+        spann.id="sp"+i;
+        spann.innerHTML=text;
+        document.getElementById( liElement.id).appendChild( spann );
+        
+
+        document.getElementById('toDoItem').value="";
+        checkB.addEventListener("change",function() {
+   				if (checkB.checked==true) {
+   				var child=document.getElementById(liElement.id);
+   				
+   				child.parentNode.appendChild(child);
+        	    document.getElementById(spann.id).style.textDecoration='line-through';
+        		}
+        		else{
+        			var child=document.getElementById(liElement.id);
+              var parent=document.getElementById(liElement.id).parentNode;
+        			child.parentNode.removeChild(document.getElementById(liElement.id));
+   				    parent.insertBefore(child,document.getElementById(parent.id).firstElementChild);
+   				
+        			
+        	    document.getElementById(spann.id).style.textDecoration='none';
+        	    }		
+        	
+			
+			});
+			}
+	else{
+			alert("enter item in text field");
+		   }
+}
+
+else{
+  document.getElementById('toDoItem').value="";
+    alert("create a new list- noo list created");
+  }
+}
+
+    var j=1;
+       function newToDoList(){
+        
+        var newList=document.createElement("ul");
+        newList.id='ul'+j;
+        document.getElementById('div1').appendChild(newList);
+        j++;
+       }
+</script>
+<style type="text/css">
+	ul {
+		list-style-type: none;
+	}
+</style>
+</head>
+<body>
+<br>
+<br>
+<br>
+
+<form action="#">
+<a id="a1" onclick="newToDoList()" onmouseover="this.style.cursor='pointer'">   +     </a><input id="toDoItem" type="text" placeholder="enter item"  >
+<button onclick="createToDoList()" onmouseover="this.style.cursor='pointer'">Add</button>
+</form>
+
+<br>
+<div id="div1" >
+	
+</div>
+
+</body>
+</html>
+
